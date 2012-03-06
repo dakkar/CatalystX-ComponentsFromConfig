@@ -16,6 +16,10 @@ cmp_deeply(TestApp->components,
                    isa('Foo'),
                    methods(something => 'a string'),
                ),
+               'TestApp::View::Bar' => all(
+                   isa('Foo'),
+                   methods(something => 'a view'),
+               ),
            },
            'the plugin worked');
 

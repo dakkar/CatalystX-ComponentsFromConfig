@@ -6,7 +6,8 @@ use Catalyst::Runtime 5.80;
 
 use Catalyst ($ENV{TEST_VERBOSE} ? '-Debug' : ()),
     'ConfigLoader',
-    '+CatalystX::ModelsFromConfig::Plugin';
+    '+CatalystX::ComponentsFromConfig::ModelPlugin',
+    '+CatalystX::ComponentsFromConfig::ViewPlugin';
 
 extends 'Catalyst';
 
