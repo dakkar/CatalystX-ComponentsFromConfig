@@ -1,10 +1,18 @@
 package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
+{
+  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '0.0.1';
+}
+{
+  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::DIST = 'CatalystX-ModelsFromConfig';
+}
 use MooseX::Role::Parameterized;
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
 use MooseX::Traits::Pluggable 0.10;
 use namespace::autoclean;
+
+# ABSTRACT: parameterised role for trait-aware component adaptors
 
 parameter component_type => (
     isa => enum(['model','view','controller']),
@@ -75,3 +83,40 @@ role {
 };
 
 1;
+
+__END__
+=pod
+
+=encoding utf-8
+
+=head1 NAME
+
+CatalystX::ComponentsFromConfig::Role::AdaptorRole - parameterised role for trait-aware component adaptors
+
+=head1 VERSION
+
+version 0.0.1
+
+=head1 AUTHORS
+
+=over 4
+
+=item *
+
+Tomas Doran (t0m) <bobtfish@bobtfish.net>
+
+=item *
+
+Gianni Ceccarelli <gianni.ceccarelli@net-a-porter.com>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2012 by Net-a-porter.com.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
