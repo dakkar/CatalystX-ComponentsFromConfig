@@ -13,7 +13,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
-   "name" : "CatalystX-ModelsFromConfig",
+   "name" : "CatalystX-ComponentsFromConfig",
    "no_index" : {
       "directory" : [
          "t/lib"

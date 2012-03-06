@@ -23,10 +23,10 @@ my %WriteMakefileArgs = (
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
-  "DISTNAME" => "CatalystX-ModelsFromConfig",
+  "DISTNAME" => "CatalystX-ComponentsFromConfig",
   "EXE_FILES" => [],
   "LICENSE" => "perl",
-  "NAME" => "CatalystX::ModelsFromConfig",
+  "NAME" => "CatalystX::ComponentsFromConfig",
   "PREREQ_PM" => {
     "Catalyst::Model" => 0,
     "Catalyst::View" => 0,

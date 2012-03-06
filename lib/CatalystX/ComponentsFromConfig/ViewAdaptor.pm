@@ -3,7 +3,7 @@ package CatalystX::ComponentsFromConfig::ViewAdaptor;
   $CatalystX::ComponentsFromConfig::ViewAdaptor::VERSION = '0.0.1';
 }
 {
-  $CatalystX::ComponentsFromConfig::ViewAdaptor::DIST = 'CatalystX-ModelsFromConfig';
+  $CatalystX::ComponentsFromConfig::ViewAdaptor::DIST = 'CatalystX-ComponentsFromConfig';
 }
 use Moose;
 

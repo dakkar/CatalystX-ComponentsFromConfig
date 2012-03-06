@@ -3,7 +3,7 @@ package CatalystX::ComponentsFromConfig::ViewPlugin;
   $CatalystX::ComponentsFromConfig::ViewPlugin::VERSION = '0.0.1';
 }
 {
-  $CatalystX::ComponentsFromConfig::ViewPlugin::DIST = 'CatalystX-ModelsFromConfig';
+  $CatalystX::ComponentsFromConfig::ViewPlugin::DIST = 'CatalystX-ComponentsFromConfig';
 }
 use Moose::Role;
 

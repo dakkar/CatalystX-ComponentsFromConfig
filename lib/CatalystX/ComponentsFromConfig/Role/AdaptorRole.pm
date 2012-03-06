@@ -3,7 +3,7 @@ package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
   $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '0.0.1';
 }
 {
-  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::DIST = 'CatalystX-ModelsFromConfig';
+  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::DIST = 'CatalystX-ComponentsFromConfig';
 }
 use MooseX::Role::Parameterized;
 use Moose::Util::TypeConstraints;

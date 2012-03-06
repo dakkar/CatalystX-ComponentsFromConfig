@@ -3,7 +3,7 @@ package CatalystX::ComponentsFromConfig::Role::PluginRole;
   $CatalystX::ComponentsFromConfig::Role::PluginRole::VERSION = '0.0.1';
 }
 {
-  $CatalystX::ComponentsFromConfig::Role::PluginRole::DIST = 'CatalystX-ModelsFromConfig';
+  $CatalystX::ComponentsFromConfig::Role::PluginRole::DIST = 'CatalystX-ComponentsFromConfig';
 }
 use MooseX::Role::Parameterized;
 use CatalystX::InjectComponent;
