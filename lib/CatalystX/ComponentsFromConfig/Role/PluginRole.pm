@@ -4,6 +4,8 @@ use CatalystX::InjectComponent;
 use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 
+# ABSTRACT: parameterised role for plugins to create components from configuration
+
 parameter component_type => (
     isa => enum(['model','view','controller']),
     required => 1,

@@ -6,6 +6,8 @@ use MooseX::Types::LoadableClass qw/LoadableClass/;
 use MooseX::Traits::Pluggable 0.10;
 use namespace::autoclean;
 
+# ABSTRACT: parameterised role for trait-aware component adaptors
+
 parameter component_type => (
     isa => enum(['model','view','controller']),
     required => 1,
