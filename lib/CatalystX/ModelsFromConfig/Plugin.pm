@@ -1,6 +1,5 @@
 package CatalystX::ModelsFromConfig::Plugin;
-use strict;
-use warnings;
+use Moose::Role;
 use CatalystX::InjectComponent;
 
 after 'setup_components' => sub { shift->_setup_dynamic_models(@_); };
