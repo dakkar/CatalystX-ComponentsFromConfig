@@ -23,4 +23,11 @@ cmp_deeply(TestApp->components,
            },
            'the plugin worked');
 
+TestApp->model('Foo')->doit;
+TestApp->view('bar')->doit;
+
+cmp_deeply(\@TestApp::ModelAdaptor::calls,
+           [ 'a string' ],
+           'custom adaptor with config');
+
 done_testing();

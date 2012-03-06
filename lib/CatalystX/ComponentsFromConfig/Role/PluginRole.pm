@@ -11,7 +11,8 @@ parameter component_type => (
 
 role {
     my $params = shift;
-    my $type = ucfirst($params->component_type);
+    my $type = $params->component_type;
+    my $uctype = ucfirst($params->component_type);
 
     after 'setup_components' => sub {
         my $method = "_setup_dynamic_$type";
@@ -22,10 +23,11 @@ role {
         my ($app) = @_;
 
         my $plugin_config = $app->config->{"${type}s_from_config"} || {};
-        my $prefix = $plugin_config->{prefix} || "${type}::";
+
+        my $prefix = $plugin_config->{prefix} || "${uctype}::";
 
         my $base_class = $plugin_config->{base_class} ||
-            "CatalystX::ComponentsFromConfig::${type}Adaptor";
+            "CatalystX::ComponentsFromConfig::${uctype}Adaptor";
 
         my $config = $app->config || {};
 
