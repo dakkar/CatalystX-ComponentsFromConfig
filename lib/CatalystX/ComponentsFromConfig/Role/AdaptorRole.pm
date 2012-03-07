@@ -68,6 +68,12 @@ role {
         my $self = $class->$orig($app,@rest);
         $self->app_name($app);
 
+        unless ($self->class->can('meta')) {
+            Moose->init_meta(
+                for_class => $self->class,
+            );
+        }
+
         $self->build_instance_with_traits(
             $self->class,
             {
