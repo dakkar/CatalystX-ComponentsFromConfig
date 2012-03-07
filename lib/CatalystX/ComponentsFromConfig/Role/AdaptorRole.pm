@@ -62,8 +62,10 @@ role {
         default => sub { [] },
     );
 
-    method SUBCOMPONENT => sub {
-        my ($self, $app, @rest) = @_;
+    around COMPONENT => sub {
+        my ($orig, $class, $app, @rest) = @_;
+
+        my $self = $class->$orig($app,@rest);
         $self->app_name($app);
 
         $self->build_instance_with_traits(
