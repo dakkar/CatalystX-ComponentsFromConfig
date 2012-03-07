@@ -26,7 +26,7 @@ role {
 
         my $plugin_config = $app->config->{"${type}s_from_config"} || {};
 
-        my $prefix = $plugin_config->{prefix} || "${uctype}::";
+        my $prefix = "${uctype}::";
 
         my $base_class = $plugin_config->{base_class} ||
             "CatalystX::ComponentsFromConfig::${uctype}Adaptor";
@@ -35,9 +35,11 @@ role {
 
         foreach my $comp_name ( grep { /^\Q$prefix\E/ } keys %$config ) {
             unless ($app->component($comp_name)) {
+                my $local_base_class =
+                    $config->{$comp_name}{base_class} || $base_class;
                 CatalystX::InjectComponent->inject(
                     into => $app,
-                    component => $base_class,
+                    component => $local_base_class,
                     as => $comp_name,
                 );
             }
