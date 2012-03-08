@@ -9,9 +9,8 @@ use namespace::autoclean;
 =head1 DESCRIPTION
 
 Here we document implementation details, see
-L<CatalystX::ComponentsFromConfig::Role::ModelPlugin> and
-L<CatalystX::ComponentsFromConfig::Role::ViewPlugin> for usage
-examples.
+L<CatalystX::ComponentsFromConfig::ModelPlugin> and
+L<CatalystX::ComponentsFromConfig::ViewPlugin> for usage examples.
 
 =head1 ROLE PARAMETERS
 
@@ -39,9 +38,10 @@ Loops through C<< $app->config >>, looking for sections that don't
 correspond to existing components. For each one, uses
 L<CatalystX::InjectComponent> to create the component, using as base
 class either the one set globally in the C<<
-${component_type}_from_config >> section, or the one set locally in
-the C<base_class> value. If neither is set, the default C<<
-CatalystX::ComponentsFromConfig::${component_type}Adaptor >> is used.
+${component_type}_from_config >> section (key C<base_class>), or the
+one set locally in the C<base_class> value. If neither is set, the
+default C<< CatalystX::ComponentsFromConfig::${component_type}Adaptor
+>> is used.
 
 =cut
 
