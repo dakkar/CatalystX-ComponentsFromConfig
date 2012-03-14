@@ -9,18 +9,11 @@ use Moose;
 
 # ABSTRACT: trait-aware adaptor for Models
 
+
 extends 'Catalyst::Model';
 
 with 'CatalystX::ComponentsFromConfig::Role::AdaptorRole'
     => { component_type => 'model' };
-
-# I'm not sure why this is needed, but if I put COMPONENT in the
-# AdaptorRole, things break
-sub COMPONENT {
-    my ($class, $app, @rest) = @_;
-    my $self = $class->next::method($app, @rest);
-    return $self->SUBCOMPONENT($app,@rest);
-}
 
 __PACKAGE__->meta->make_immutable;
 
@@ -38,6 +31,40 @@ CatalystX::ComponentsFromConfig::ModelAdaptor - trait-aware adaptor for Models
 =head1 VERSION
 
 version 0.0.1
+
+=head1 SYNOPSIS
+
+In your application:
+
+  package My::App;
+  use Catalyst qw(
+      ConfigLoader
+      +CatalystX::ComponentsFromConfig::ModelPlugin
+  );
+
+In your config:
+
+   <Model::MyClass>
+    class My::Class
+    <args>
+      some  param
+    </args>
+    <traits>
+      +My::Special::Role
+    </traits>
+   </Model::MyClass>
+
+Now, C<< $c->model('MyClass') >> will contain an object built just like:
+
+  my $obj = My::Class->new({some=>'param'});
+  apply_all_roles($obj,'My::Special::Role');
+
+=head1 DESCRIPTION
+
+This plugin, built on
+L<CatalystX::ComponentsFromConfig::Role::AdaptorRole>, adapts
+arbitrary classes to Catalyst models, and can also apply roles to them
+as specified in the configuration.
 
 =head1 AUTHORS
 

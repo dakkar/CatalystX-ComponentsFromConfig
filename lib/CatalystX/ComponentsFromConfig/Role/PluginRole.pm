@@ -12,10 +12,12 @@ use namespace::autoclean;
 
 # ABSTRACT: parameterised role for plugins to create components from configuration
 
+
 parameter component_type => (
     isa => enum(['model','view','controller']),
     required => 1,
 );
+
 
 role {
     my $params = shift;
@@ -32,7 +34,7 @@ role {
 
         my $plugin_config = $app->config->{"${type}s_from_config"} || {};
 
-        my $prefix = $plugin_config->{prefix} || "${uctype}::";
+        my $prefix = "${uctype}::";
 
         my $base_class = $plugin_config->{base_class} ||
             "CatalystX::ComponentsFromConfig::${uctype}Adaptor";
@@ -41,9 +43,11 @@ role {
 
         foreach my $comp_name ( grep { /^\Q$prefix\E/ } keys %$config ) {
             unless ($app->component($comp_name)) {
+                my $local_base_class =
+                    $config->{$comp_name}{base_class} || $base_class;
                 CatalystX::InjectComponent->inject(
                     into => $app,
-                    component => $base_class,
+                    component => $local_base_class,
                     as => $comp_name,
                 );
             }
@@ -65,6 +69,38 @@ CatalystX::ComponentsFromConfig::Role::PluginRole - parameterised role for plugi
 =head1 VERSION
 
 version 0.0.1
+
+=head1 DESCRIPTION
+
+Here we document implementation details, see
+L<CatalystX::ComponentsFromConfig::ModelPlugin> and
+L<CatalystX::ComponentsFromConfig::ViewPlugin> for usage examples.
+
+=head1 METHODS
+
+=head2 C<setup_components>
+
+C<after> the normal Catalyst components setup, call
+C<_setup_dynamic_${component_type}>.
+
+=head2 C<_setup_dynamic_${component_type}>
+
+Loops through C<< $app->config >>, looking for sections that don't
+correspond to existing components. For each one, uses
+L<CatalystX::InjectComponent> to create the component, using as base
+class either the one set globally in the C<<
+${component_type}_from_config >> section (key C<base_class>), or the
+one set locally in the C<base_class> value. If neither is set, the
+default C<< CatalystX::ComponentsFromConfig::${component_type}Adaptor
+>> is used.
+
+=head1 ROLE PARAMETERS
+
+=head2 C<component_type>
+
+One of C<'model'>, C<'view'>, C<'controller'>. There is no
+pre-packaged plugin to create controllers, mostly because I could not
+think of a sensible adaptor for them.
 
 =head1 AUTHORS
 

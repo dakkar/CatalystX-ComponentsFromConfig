@@ -9,6 +9,7 @@ use Moose::Role;
 
 # ABSTRACT: plugin to create Models from configuration
 
+
 with 'CatalystX::ComponentsFromConfig::Role::PluginRole'
     => { component_type => 'model' };
 
@@ -26,6 +27,52 @@ CatalystX::ComponentsFromConfig::ModelPlugin - plugin to create Models from conf
 =head1 VERSION
 
 version 0.0.1
+
+=head1 SYNOPSIS
+
+In your application:
+
+  package My::App;
+  use Catalyst qw(
+      ConfigLoader
+      +CatalystX::ComponentsFromConfig::ModelPlugin
+  );
+
+In your config:
+
+   <Model::MyClass>
+    class My::Class
+    <args>
+      some  param
+    </args>
+    <traits>
+      +My::Special::Role
+    </traits>
+   </Model::MyClass>
+
+Now, C<< $c->model('MyClass') >> will contain an object built just like:
+
+  my $obj = My::Class->new({some=>'param'});
+  apply_all_roles($obj,'My::Special::Role');
+
+=head1 DESCRIPTION
+
+This plugin, built on
+L<CatalystX::ComponentsFromConfig::Role::PluginRole>, allows you to
+create model components at application setup time, just by specifying
+them in the configuration.
+
+=head1 GLOBAL CONFIGURATION
+
+  <models_from_config>
+   base_class My::ModelAdaptor
+  </models_from_config>
+
+The default C<base_class> is
+C<CatalystX::ComponentsFromConfig::ModelAdaptor>, buty you can specify
+whatever adaptor you want. Of course, you have to make sure that the
+model-specific configuration block is in the format that your adaptor
+expects.
 
 =head1 AUTHORS
 

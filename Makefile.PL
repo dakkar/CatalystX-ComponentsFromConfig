@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "plugin to create Views from configuration",
+  "ABSTRACT" => "create models / views at load time",
   "AUTHOR" => "Tomas Doran (t0m) <bobtfish\@bobtfish.net>, Gianni Ceccarelli <gianni.ceccarelli\@net-a-porter.com>",
   "BUILD_REQUIRES" => {
     "Catalyst" => 0,

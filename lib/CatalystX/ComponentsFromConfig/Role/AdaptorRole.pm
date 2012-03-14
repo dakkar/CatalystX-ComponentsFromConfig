@@ -14,6 +14,7 @@ use namespace::autoclean;
 
 # ABSTRACT: parameterised role for trait-aware component adaptors
 
+
 parameter component_type => (
     isa => enum(['model','view','controller']),
     required => 1,
@@ -27,6 +28,8 @@ role {
         -excludes => ['new_with_traits'],
         -alias => { _build_instance_with_traits => 'build_instance_with_traits' },
     };
+
+
 
     method _trait_namespace => sub {
         my ($self) = @_;
@@ -43,6 +46,7 @@ role {
         return $class . '::TraitFor';
     };
 
+
     has class => (
         isa => LoadableClass,
         is => 'ro',
@@ -56,11 +60,13 @@ role {
         init_arg => undef,
     );
 
+
     has args => (
         isa => HashRef,
         is => 'ro',
         default => sub { {} },
     );
+
 
     has traits => (
         isa => ArrayRef[Str],
@@ -68,9 +74,17 @@ role {
         default => sub { [] },
     );
 
-    method SUBCOMPONENT => sub {
-        my ($self, $app, @rest) = @_;
+    around COMPONENT => sub {
+        my ($orig, $class, $app, @rest) = @_;
+
+        my $self = $class->$orig($app,@rest);
         $self->app_name($app);
+
+        unless ($self->class->can('meta')) {
+            Moose->init_meta(
+                for_class => $self->class,
+            );
+        }
 
         $self->build_instance_with_traits(
             $self->class,
@@ -96,6 +110,76 @@ CatalystX::ComponentsFromConfig::Role::AdaptorRole - parameterised role for trai
 =head1 VERSION
 
 version 0.0.1
+
+=head1 DESCRIPTION
+
+Here we document implementation details, see
+L<CatalystX::ComponentsFromConfig::ModelAdaptor> and
+L<CatalystX::ComponentsFromConfig::ViewAdaptor> for usage examples.
+
+This role uses L<MooseX::Traits::Pluggable> to allow you to add roles
+to your model classes via the configuration.
+
+=head1 ATTRIBUTES
+
+=head2 C<class>
+
+The name of the class to adapt.
+
+=head2 C<args>
+
+Hashref to pass to the constructor of the adapted class.
+
+=head2 C<traits>
+
+Arrayref of traits / roles to apply to the class we're adapting. These
+will be processed by C<_build_instance_with_traits> in
+L<MooseX::Traits::Pluggable> (like C<new_with_traits>, see also
+L<MooseX::Traits>).
+
+=head1 METHODS
+
+=head2 C<_trait_namespace>
+
+Used by L<MooseX::Traits::Pluggable>. Given a L</class> of
+C<My::App::Special::Class::For::Things> loaded into the C<My::App>
+Catalyst application, the following namespaces will be searched for
+traits / roles:
+
+=over 4
+
+=item *
+
+C<My::App::TraitFor::Special::Class::For::Things>
+
+=item *
+
+C<My::App::TraitFor::Class::For::Things>
+
+=item *
+
+C<My::App::TraitFor::For::Things>
+
+=item *
+
+C<My::App::TraitFor::Things>
+
+=item *
+
+C<My::App::TraitFor::${component_type}::Things>
+
+=back
+
+On the other hand, if the class name does not start with the
+application name, just C<${class}::TraitFor> will be searched.
+
+=head1 ROLE PARAMETERS
+
+=head2 C<component_type>
+
+One of C<'model'>, C<'view'>, C<'controller'>. There is no
+pre-packaged aadptor to create controllers, mostly because I could not
+think of a sensible way to write it.
 
 =head1 AUTHORS
 

@@ -1,5 +1,5 @@
 ---
-abstract: 'plugin to create Views from configuration'
+abstract: 'create models / views at load time'
 author:
   - 'Tomas Doran (t0m) <bobtfish@bobtfish.net>'
   - 'Gianni Ceccarelli <gianni.ceccarelli@net-a-porter.com>'
