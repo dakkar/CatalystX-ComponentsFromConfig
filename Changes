@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.1_02    2012-03-18 18:42:16 Europe/London
 - fix prereq Catalyst::Plugin::ConfigLoader
 
 0.1_01    2012-03-14 12:15:40 Europe/London
