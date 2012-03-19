@@ -43,7 +43,9 @@
       "test" : {
          "requires" : {
             "Catalyst" : "0",
+            "Catalyst::Plugin::ConfigLoader" : "0",
             "Catalyst::Runtime" : "5.80",
+            "Config::General" : "0",
             "Path::Class" : "0",
             "Test::Deep" : "0",
             "Test::More" : "0",
@@ -53,6 +55,6 @@
       }
    },
    "release_status" : "testing",
-   "version" : "0.1_01"
+   "version" : "0.1_03"
 }
 
