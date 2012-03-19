@@ -1,4 +1,5 @@
 {{$NEXT}}
+- add prereq Config::General, move req to test-requires
 
 0.1_02    2012-03-18 18:42:16 Europe/London
 - fix prereq Catalyst::Plugin::ConfigLoader
