@@ -13,7 +13,9 @@ my %WriteMakefileArgs = (
   "AUTHOR" => "Tomas Doran (t0m) <bobtfish\@bobtfish.net>, Gianni Ceccarelli <gianni.ceccarelli\@net-a-porter.com>",
   "BUILD_REQUIRES" => {
     "Catalyst" => 0,
+    "Catalyst::Plugin::ConfigLoader" => 0,
     "Catalyst::Runtime" => "5.80",
+    "Config::General" => 0,
     "Path::Class" => 0,
     "Test::Deep" => 0,
     "Test::More" => 0,
@@ -29,7 +31,6 @@ my %WriteMakefileArgs = (
   "NAME" => "CatalystX::ComponentsFromConfig",
   "PREREQ_PM" => {
     "Catalyst::Model" => 0,
-    "Catalyst::Plugin::ConfigLoader" => 0,
     "Catalyst::View" => 0,
     "CatalystX::InjectComponent" => 0,
     "Moose" => 0,
@@ -41,7 +42,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::Moose" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.1_02",
+  "VERSION" => "1.0",
   "test" => {
     "TESTS" => "t/*.t"
   }

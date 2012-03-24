@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ViewAdaptor;
 {
-  $CatalystX::ComponentsFromConfig::ViewAdaptor::VERSION = '0.1_02';
+  $CatalystX::ComponentsFromConfig::ViewAdaptor::VERSION = '1.0';
 }
 {
   $CatalystX::ComponentsFromConfig::ViewAdaptor::DIST = 'CatalystX-ComponentsFromConfig';
@@ -30,7 +30,7 @@ CatalystX::ComponentsFromConfig::ViewAdaptor - trait-aware adaptor for Views
 
 =head1 VERSION
 
-version 0.1_02
+version 1.0
 
 =head1 SYNOPSIS
 

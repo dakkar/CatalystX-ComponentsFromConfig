@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ViewPlugin;
 {
-  $CatalystX::ComponentsFromConfig::ViewPlugin::VERSION = '0.1_02';
+  $CatalystX::ComponentsFromConfig::ViewPlugin::VERSION = '1.0';
 }
 {
   $CatalystX::ComponentsFromConfig::ViewPlugin::DIST = 'CatalystX-ComponentsFromConfig';
@@ -26,7 +26,7 @@ CatalystX::ComponentsFromConfig::ViewPlugin - plugin to create Views from config
 
 =head1 VERSION
 
-version 0.1_02
+version 1.0
 
 =head1 SYNOPSIS
 

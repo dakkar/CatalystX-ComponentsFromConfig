@@ -5,7 +5,9 @@ author:
   - 'Gianni Ceccarelli <gianni.ceccarelli@net-a-porter.com>'
 build_requires:
   Catalyst: 0
+  Catalyst::Plugin::ConfigLoader: 0
   Catalyst::Runtime: 5.80
+  Config::General: 0
   Path::Class: 0
   Test::Deep: 0
   Test::More: 0
@@ -25,7 +27,6 @@ no_index:
     - t/lib
 requires:
   Catalyst::Model: 0
-  Catalyst::Plugin::ConfigLoader: 0
   Catalyst::View: 0
   CatalystX::InjectComponent: 0
   Moose: 0
@@ -36,4 +37,4 @@ requires:
   MooseX::Types::LoadableClass: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
-version: 0.1_02
+version: 1.0
