@@ -37,4 +37,4 @@ requires:
   MooseX::Types::LoadableClass: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
-version: 1.0
+version: 1.001

@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ModelPlugin;
 {
-  $CatalystX::ComponentsFromConfig::ModelPlugin::VERSION = '1.0';
+  $CatalystX::ComponentsFromConfig::ModelPlugin::VERSION = '1.001';
 }
 {
   $CatalystX::ComponentsFromConfig::ModelPlugin::DIST = 'CatalystX-ComponentsFromConfig';
@@ -26,7 +26,7 @@ CatalystX::ComponentsFromConfig::ModelPlugin - plugin to create Models from conf
 
 =head1 VERSION
 
-version 1.0
+version 1.001
 
 =head1 SYNOPSIS
 
@@ -69,10 +69,24 @@ them in the configuration.
   </models_from_config>
 
 The default C<base_class> is
-C<CatalystX::ComponentsFromConfig::ModelAdaptor>, buty you can specify
+C<CatalystX::ComponentsFromConfig::ModelAdaptor>, but you can specify
 whatever adaptor you want. Of course, you have to make sure that the
 model-specific configuration block is in the format that your adaptor
 expects.
+
+A useful example is when you want to use L<Catalyst::Model::DBIC::Schema>:
+
+ <Model::DB>
+  base_class Catalyst::Model::DBIC::Schema
+  schema_class My::Schema
+  <connect_info>
+   dsn dbi:SQLite:dbname=/tmp/whatever.db
+  </connect_info>
+ </Model::DB>
+
+Note that, since we're not using
+L<CatalystX::ComponentsFromConfig::ModelAdaptor>, the way you pass the
+various parameters is different than what is shown at the top.
 
 =head1 AUTHORS
 
