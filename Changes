@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+1.001     2012-03-30 13:22:04 Europe/London
 - documentation fix, RT 76161
   https://rt.cpan.org/Public/Bug/Display.html?id=76161
 
