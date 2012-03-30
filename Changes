@@ -1,4 +1,6 @@
 {{$NEXT}}
+- documentation fix, RT 76161
+  https://rt.cpan.org/Public/Bug/Display.html?id=76161
 
 1.0       2012-03-24 11:01:57 Europe/London
 - first non-devel release
