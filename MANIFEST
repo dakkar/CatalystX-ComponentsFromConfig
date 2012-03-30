@@ -5,7 +5,6 @@ META.yml
 Makefile.PL
 dist.ini
 lib/CatalystX/ComponentsFromConfig.pm
-lib/CatalystX/ComponentsFromConfig/#ViewPlugin.pm#
 lib/CatalystX/ComponentsFromConfig/ModelAdaptor.pm
 lib/CatalystX/ComponentsFromConfig/ModelPlugin.pm
 lib/CatalystX/ComponentsFromConfig/Role/AdaptorRole.pm
