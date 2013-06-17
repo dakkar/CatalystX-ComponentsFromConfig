@@ -1,7 +1,7 @@
 package CatalystX::ComponentsFromConfig::Role::PluginRole;
 use MooseX::Role::Parameterized;
+use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use CatalystX::InjectComponent;
-use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 
 # ABSTRACT: parameterised role for plugins to create components from configuration
@@ -16,14 +16,15 @@ L<CatalystX::ComponentsFromConfig::ViewPlugin> for usage examples.
 
 =head2 C<component_type>
 
-One of C<'model'>, C<'view'>, C<'controller'>. There is no
-pre-packaged plugin to create controllers, mostly because I could not
-think of a sensible adaptor for them.
+The type of component to create, in lower case. Usually one of
+C<'model'>, C<'view'> or C<'controller'>. There is no pre-packaged
+plugin to create controllers, mostly because I could not think of a
+sensible adaptor for them.
 
 =cut
 
 parameter component_type => (
-    isa => enum(['model','view','controller']),
+    isa => LowerCaseSimpleStr,
     required => 1,
 );
 
@@ -72,6 +73,7 @@ role {
                 my $local_base_class =
                     $config->{$comp_name}{base_class} || $base_class;
                 CatalystX::InjectComponent->inject(
+                    skip_mvc_renaming => 1,
                     into => $app,
                     component => $local_base_class,
                     as => $comp_name,
