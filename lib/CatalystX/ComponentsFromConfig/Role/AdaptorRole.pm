@@ -2,6 +2,7 @@ package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
 use MooseX::Role::Parameterized;
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
+use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
 use MooseX::Traits::Pluggable 0.10;
 use namespace::autoclean;
@@ -21,14 +22,15 @@ to your model classes via the configuration.
 
 =head2 C<component_type>
 
-One of C<'model'>, C<'view'>, C<'controller'>. There is no
-pre-packaged aadptor to create controllers, mostly because I could not
-think of a sensible way to write it.
+The type of component to create, in lower case. Usually one of
+C<'model'>, C<'view'> or C<'controller'>. There is no pre-packaged
+adptor to create controllers, mostly because I could not think of a
+sensible way to write it.
 
 =cut
 
 parameter component_type => (
-    isa => enum(['model','view','controller']),
+    isa => LowerCaseSimpleStr,
     required => 1,
 );
 
