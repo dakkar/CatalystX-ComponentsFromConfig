@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+1.002     2013-06-20 11:21:00 Europe/London
 - Allow any component type, not just Model, View and Controller
 
 1.001     2012-03-30 13:22:04 Europe/London
