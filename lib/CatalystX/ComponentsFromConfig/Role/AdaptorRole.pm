@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
 {
-  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '0.1_04';
+  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '1.002';
 }
 {
   $CatalystX::ComponentsFromConfig::Role::AdaptorRole::DIST = 'CatalystX-ComponentsFromConfig';
@@ -8,6 +8,7 @@ package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
 use MooseX::Role::Parameterized;
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
+use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
 use MooseX::Traits::Pluggable 0.10;
 use namespace::autoclean;
@@ -16,7 +17,7 @@ use namespace::autoclean;
 
 
 parameter component_type => (
-    isa => enum(['model','view','controller']),
+    isa => LowerCaseSimpleStr,
     required => 1,
 );
 
@@ -99,6 +100,7 @@ role {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -109,7 +111,7 @@ CatalystX::ComponentsFromConfig::Role::AdaptorRole - parameterised role for trai
 
 =head1 VERSION
 
-version 0.1_04
+version 1.002
 
 =head1 DESCRIPTION
 
@@ -177,9 +179,10 @@ application name, just C<${class}::TraitFor> will be searched.
 
 =head2 C<component_type>
 
-One of C<'model'>, C<'view'>, C<'controller'>. There is no
-pre-packaged aadptor to create controllers, mostly because I could not
-think of a sensible way to write it.
+The type of component to create, in lower case. Usually one of
+C<'model'>, C<'view'> or C<'controller'>. There is no pre-packaged
+adptor to create controllers, mostly because I could not think of a
+sensible way to write it.
 
 =head1 AUTHORS
 
@@ -203,4 +206,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

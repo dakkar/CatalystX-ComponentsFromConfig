@@ -1,4 +1,12 @@
-0.1_04    2012-04-24 13:56:43 Europe/London
+1.002     2013-06-20 11:21:00 Europe/London
+- Allow any component type, not just Model, View and Controller
+
+1.001     2012-03-30 13:22:04 Europe/London
+- documentation fix, RT 76161
+  https://rt.cpan.org/Public/Bug/Display.html?id=76161
+
+1.0       2012-03-24 11:01:57 Europe/London
+- first non-devel release
 
 0.1_03    2012-03-19 09:38:34 Europe/London
 - add prereq Config::General, move req to test-requires

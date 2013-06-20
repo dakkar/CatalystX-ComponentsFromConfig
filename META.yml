@@ -11,12 +11,11 @@ build_requires:
   Path::Class: 0
   Test::Deep: 0
   Test::More: 0
-  strict: 0
-  warnings: 0
+  lib: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300010, CPAN::Meta::Converter version 2.120630'
+generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,7 +33,8 @@ requires:
   Moose::Util::TypeConstraints: 0
   MooseX::Role::Parameterized: 0
   MooseX::Traits::Pluggable: 0.10
+  MooseX::Types::Common::String: 0
   MooseX::Types::LoadableClass: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
-version: 0.1_04
+version: 1.002

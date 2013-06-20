@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ModelAdaptor;
 {
-  $CatalystX::ComponentsFromConfig::ModelAdaptor::VERSION = '0.1_04';
+  $CatalystX::ComponentsFromConfig::ModelAdaptor::VERSION = '1.002';
 }
 {
   $CatalystX::ComponentsFromConfig::ModelAdaptor::DIST = 'CatalystX-ComponentsFromConfig';
@@ -20,6 +20,7 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -30,7 +31,7 @@ CatalystX::ComponentsFromConfig::ModelAdaptor - trait-aware adaptor for Models
 
 =head1 VERSION
 
-version 0.1_04
+version 1.002
 
 =head1 SYNOPSIS
 
@@ -88,4 +89,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -1,21 +1,28 @@
 package CatalystX::ComponentsFromConfig::Role::PluginRole;
 {
-  $CatalystX::ComponentsFromConfig::Role::PluginRole::VERSION = '0.1_04';
+  $CatalystX::ComponentsFromConfig::Role::PluginRole::VERSION = '1.002';
 }
 {
   $CatalystX::ComponentsFromConfig::Role::PluginRole::DIST = 'CatalystX-ComponentsFromConfig';
 }
 use MooseX::Role::Parameterized;
+use MooseX::Types::Moose qw/Bool/;
+use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use CatalystX::InjectComponent;
-use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 
 # ABSTRACT: parameterised role for plugins to create components from configuration
 
 
 parameter component_type => (
-    isa => enum(['model','view','controller']),
+    isa => LowerCaseSimpleStr,
     required => 1,
+);
+
+
+parameter skip_mvc_renaming => (
+    isa => Bool,
+    default => 0,
 );
 
 
@@ -46,6 +53,7 @@ role {
                 my $local_base_class =
                     $config->{$comp_name}{base_class} || $base_class;
                 CatalystX::InjectComponent->inject(
+                    skip_mvc_renaming => $params->skip_mvc_renaming,
                     into => $app,
                     component => $local_base_class,
                     as => $comp_name,
@@ -58,6 +66,7 @@ role {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -68,7 +77,7 @@ CatalystX::ComponentsFromConfig::Role::PluginRole - parameterised role for plugi
 
 =head1 VERSION
 
-version 0.1_04
+version 1.002
 
 =head1 DESCRIPTION
 
@@ -98,9 +107,20 @@ default C<< CatalystX::ComponentsFromConfig::${component_type}Adaptor
 
 =head2 C<component_type>
 
-One of C<'model'>, C<'view'>, C<'controller'>. There is no
-pre-packaged plugin to create controllers, mostly because I could not
-think of a sensible adaptor for them.
+The type of component to create, in lower case. Usually one of
+C<'model'>, C<'view'> or C<'controller'>. There is no pre-packaged
+plugin to create controllers, mostly because I could not think of a
+sensible adaptor for them.
+
+=head2 C<skip_mvc_renaming>
+
+By default L<CatalystX::InjectComponent> renames components that don't
+start with one of C<Model::>, C<View::> or C<Controller::> according
+to which corresponding L<Catalyst> component base class they inherit
+from.  To avoid this (for example if your component is not a model,
+view or controller), set this to true.
+
+=head1 METHODS
 
 =head1 AUTHORS
 
@@ -124,4 +144,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
