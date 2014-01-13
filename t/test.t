@@ -23,6 +23,8 @@ cmp_deeply(TestApp->components,
            },
            'the plugin worked');
 
+ok(TestApp->model('Foo')->can('trait_method'),
+   'trait was applied');
 TestApp->model('Foo')->doit;
 TestApp->view('bar')->doit;
 
