@@ -11,6 +11,7 @@ use Moose::Util 'with_traits';
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
 use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
+use Sub::Install;
 use namespace::autoclean;
 
 # ABSTRACT: parameterised role for trait-aware component adaptors
@@ -64,29 +65,31 @@ role {
                     $other_class,
                     'MooseX::Traits::Pluggable',
                 );
-                my $trait_namespace = sub {
-                    my ($other_self) = @_;
-                    if ($other_class =~ s/^\Q$app//) {
-                        my @list;
-                        do {
-                            push(@list, "${app}::TraitFor" . $other_class)
-                        } while ($other_class =~ s/::\w+$//);
-                        push(@list, "${app}::TraitFor::${type}" . $other_class);
-                        return \@list;
-                    }
-                    return $other_class . '::TraitFor';
-                };
 
-                no strict 'refs';
-                local *{"${other_class}::_trait_namespace"}=$trait_namespace;
-
-                return $new_class->new_with_traits({
-                    traits => $self->traits,
-                    %{ $self->args },
+                Sub::Install::install_sub({
+                    code => sub {
+                        my ($other_self) = @_;
+                        if ($other_class =~ s/^\Q$app//) {
+                            my @list;
+                            do {
+                                push(@list, "${app}::TraitFor" . $other_class)
+                            } while ($other_class =~ s/::\w+$//);
+                            push(@list, "${app}::TraitFor::${type}" . $other_class);
+                            return \@list;
+                        }
+                        return $other_class . '::TraitFor';
+                    },
+                    into => $new_class,
+                    as => '_trait_namespace',
                 });
+                $other_class = $new_class;
             }
+            return $other_class->new_with_traits({
+                traits => $self->traits,
+                %{ $self->args },
+            });
         }
-        return $self->class->new($self->args);
+        return $other_class->new($self->args);
     };
 };
 
