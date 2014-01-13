@@ -1,4 +1,4 @@
-1.003     2014-01-13 14:59:41 Europe/London
+1.003     2014-01-13 15:00:50 Europe/London
  - Simplify use of MooseX::Traits::Pluggable, applying it to the
    correct class
 
