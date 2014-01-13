@@ -5,7 +5,6 @@ use Moose::Util 'with_traits';
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
 use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
-use Sub::Install;
 use namespace::autoclean;
 
 # ABSTRACT: parameterised role for trait-aware component adaptors
@@ -119,8 +118,8 @@ application name, just C<${class}::TraitFor> will be searched.
                     'MooseX::Traits::Pluggable',
                 );
 
-                Sub::Install::install_sub({
-                    code => sub {
+                $new_class->meta->add_method(
+                    _trait_namespace => sub {
                         my ($other_self) = @_;
                         if ($other_class =~ s/^\Q$app//) {
                             my @list;
@@ -132,9 +131,8 @@ application name, just C<${class}::TraitFor> will be searched.
                         }
                         return $other_class . '::TraitFor';
                     },
-                    into => $new_class,
-                    as => '_trait_namespace',
-                });
+                );
+
                 $other_class = $new_class;
             }
             return $other_class->new_with_traits({
