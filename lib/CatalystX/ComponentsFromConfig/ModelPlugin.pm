@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ModelPlugin;
 {
-  $CatalystX::ComponentsFromConfig::ModelPlugin::VERSION = '1.002';
+  $CatalystX::ComponentsFromConfig::ModelPlugin::VERSION = '1.003';
 }
 {
   $CatalystX::ComponentsFromConfig::ModelPlugin::DIST = 'CatalystX-ComponentsFromConfig';
@@ -19,7 +19,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -27,7 +27,7 @@ CatalystX::ComponentsFromConfig::ModelPlugin - plugin to create Models from conf
 
 =head1 VERSION
 
-version 1.002
+version 1.003
 
 =head1 SYNOPSIS
 

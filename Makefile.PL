@@ -25,13 +25,14 @@ my %WriteMakefileArgs = (
     "CatalystX::InjectComponent" => 0,
     "Moose" => 0,
     "Moose::Role" => 0,
+    "Moose::Util" => 0,
     "Moose::Util::TypeConstraints" => 0,
     "MooseX::Role::Parameterized" => 0,
-    "MooseX::Traits::Pluggable" => "0.10",
     "MooseX::Types::Common::String" => 0,
     "MooseX::Types::LoadableClass" => 0,
     "MooseX::Types::Moose" => 0,
-    "namespace::autoclean" => 0
+    "namespace::autoclean" => 0,
+    "strict" => 0
   },
   "TEST_REQUIRES" => {
     "Catalyst" => 0,
@@ -43,37 +44,42 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "lib" => 0
   },
-  "VERSION" => "1.002",
+  "VERSION" => "1.003",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
-  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
-  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
-}
+my %FallbackPrereqs = (
+  "Catalyst" => 0,
+  "Catalyst::Model" => 0,
+  "Catalyst::Plugin::ConfigLoader" => 0,
+  "Catalyst::Runtime" => "5.80",
+  "Catalyst::View" => 0,
+  "CatalystX::InjectComponent" => 0,
+  "Config::General" => 0,
+  "Moose" => 0,
+  "Moose::Role" => 0,
+  "Moose::Util" => 0,
+  "Moose::Util::TypeConstraints" => 0,
+  "MooseX::Role::Parameterized" => 0,
+  "MooseX::Types::Common::String" => 0,
+  "MooseX::Types::LoadableClass" => 0,
+  "MooseX::Types::Moose" => 0,
+  "Path::Class" => 0,
+  "Test::Deep" => 0,
+  "Test::More" => 0,
+  "lib" => 0,
+  "namespace::autoclean" => 0,
+  "strict" => 0
+);
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}

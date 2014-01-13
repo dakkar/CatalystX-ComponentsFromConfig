@@ -14,6 +14,7 @@ lib/CatalystX/ComponentsFromConfig/ViewPlugin.pm
 t/lib/Foo.pm
 t/lib/TestApp.pm
 t/lib/TestApp/ModelAdaptor.pm
+t/lib/TestApp/Trait.pm
 t/release-no-tabs.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t

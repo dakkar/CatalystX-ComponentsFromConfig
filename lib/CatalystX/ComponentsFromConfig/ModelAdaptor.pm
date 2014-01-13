@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::ModelAdaptor;
 {
-  $CatalystX::ComponentsFromConfig::ModelAdaptor::VERSION = '1.002';
+  $CatalystX::ComponentsFromConfig::ModelAdaptor::VERSION = '1.003';
 }
 {
   $CatalystX::ComponentsFromConfig::ModelAdaptor::DIST = 'CatalystX-ComponentsFromConfig';
@@ -23,7 +23,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -31,7 +31,7 @@ CatalystX::ComponentsFromConfig::ModelAdaptor - trait-aware adaptor for Models
 
 =head1 VERSION
 
-version 1.002
+version 1.003
 
 =head1 SYNOPSIS
 
