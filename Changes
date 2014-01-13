@@ -1,4 +1,6 @@
 {{$NEXT}}
+- Simplify use of MooseX::Traits::Pluggable, applying it to the
+  correct class
 
 1.002     2013-06-20 11:21:00 Europe/London
 - Allow any component type, not just Model, View and Controller
