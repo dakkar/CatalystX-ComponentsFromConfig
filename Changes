@@ -1,4 +1,4 @@
-1.004     2014-01-14 10:24:06 Europe/London
+1.004     2014-01-14 10:26:20 Europe/London
  - use the MOP instead of Sub::Install (thanks ribasushi and mst for
    the hint)
  - fix the trait namespace lookup, it was completely wrong; now it
