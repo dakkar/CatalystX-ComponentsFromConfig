@@ -118,22 +118,25 @@ application name, just C<${class}::TraitFor> will be searched.
                     'MooseX::Traits::Pluggable',
                 );
 
+                my $original_other_class = $other_class;
+                $other_class = $new_class;
+
                 $new_class->meta->add_method(
                     _trait_namespace => sub {
                         my ($other_self) = @_;
-                        if ($other_class =~ s/^\Q$app//) {
+                        my $class = $original_other_class;
+
+                        if ($class =~ s/^\Q$app//) {
                             my @list;
                             do {
-                                push(@list, "${app}::TraitFor" . $other_class)
-                            } while ($other_class =~ s/::\w+$//);
-                            push(@list, "${app}::TraitFor::${type}" . $other_class);
+                                push(@list, "${app}::TraitFor" . $class)
+                            } while ($class =~ s/::\w+$// && $class);
+                            push(@list, "${app}::TraitFor::${type}" . $class);
                             return \@list;
                         }
-                        return $other_class . '::TraitFor';
+                        return $class . '::TraitFor';
                     },
                 );
-
-                $other_class = $new_class;
             }
             return $other_class->new_with_traits({
                 traits => $self->traits,

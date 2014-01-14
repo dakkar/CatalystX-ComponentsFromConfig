@@ -1,6 +1,8 @@
 {{$NEXT}}
  - use the MOP instead of Sub::Install (thanks ribasushi and mst for
    the hint)
+ - fix the trait namespace lookup, it was completely wrong; now it
+   actually does what the documentation says (with test)
 
 1.003     2014-01-13 15:00:50 Europe/London
  - Simplify use of MooseX::Traits::Pluggable, applying it to the
