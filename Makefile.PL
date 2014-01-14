@@ -32,7 +32,6 @@ my %WriteMakefileArgs = (
     "MooseX::Types::Common::String" => 0,
     "MooseX::Types::LoadableClass" => 0,
     "MooseX::Types::Moose" => 0,
-    "Sub::Install" => 0,
     "namespace::autoclean" => 0
   },
   "TEST_REQUIRES" => {
@@ -45,7 +44,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "lib" => 0
   },
-  "VERSION" => "1.003",
+  "VERSION" => "1.004",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -70,7 +69,6 @@ my %FallbackPrereqs = (
   "MooseX::Types::LoadableClass" => 0,
   "MooseX::Types::Moose" => 0,
   "Path::Class" => 0,
-  "Sub::Install" => 0,
   "Test::Deep" => 0,
   "Test::More" => 0,
   "lib" => 0,

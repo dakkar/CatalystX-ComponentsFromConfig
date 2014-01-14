@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::Role::AdaptorRole;
 {
-  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '1.003';
+  $CatalystX::ComponentsFromConfig::Role::AdaptorRole::VERSION = '1.004';
 }
 {
   $CatalystX::ComponentsFromConfig::Role::AdaptorRole::DIST = 'CatalystX-ComponentsFromConfig';
@@ -11,7 +11,6 @@ use Moose::Util 'with_traits';
 use MooseX::Types::Moose qw/ HashRef ArrayRef Str /;
 use MooseX::Types::Common::String qw/LowerCaseSimpleStr/;
 use MooseX::Types::LoadableClass qw/LoadableClass/;
-use Sub::Install;
 use namespace::autoclean;
 
 # ABSTRACT: parameterised role for trait-aware component adaptors
@@ -66,23 +65,25 @@ role {
                     'MooseX::Traits::Pluggable',
                 );
 
-                Sub::Install::install_sub({
-                    code => sub {
+                my $original_other_class = $other_class;
+                $other_class = $new_class;
+
+                $new_class->meta->add_method(
+                    _trait_namespace => sub {
                         my ($other_self) = @_;
-                        if ($other_class =~ s/^\Q$app//) {
+                        my $class = $original_other_class;
+
+                        if ($class =~ s/^\Q$app//) {
                             my @list;
                             do {
-                                push(@list, "${app}::TraitFor" . $other_class)
-                            } while ($other_class =~ s/::\w+$//);
-                            push(@list, "${app}::TraitFor::${type}" . $other_class);
+                                push(@list, "${app}::TraitFor" . $class)
+                            } while ($class =~ s/::\w+$// && $class);
+                            push(@list, "${app}::TraitFor::${type}" . $class);
                             return \@list;
                         }
-                        return $other_class . '::TraitFor';
+                        return $class . '::TraitFor';
                     },
-                    into => $new_class,
-                    as => '_trait_namespace',
-                });
-                $other_class = $new_class;
+                );
             }
             return $other_class->new_with_traits({
                 traits => $self->traits,
@@ -107,7 +108,7 @@ CatalystX::ComponentsFromConfig::Role::AdaptorRole - parameterised role for trai
 
 =head1 VERSION
 
-version 1.003
+version 1.004
 
 =head1 DESCRIPTION
 

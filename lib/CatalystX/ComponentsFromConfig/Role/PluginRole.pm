@@ -1,6 +1,6 @@
 package CatalystX::ComponentsFromConfig::Role::PluginRole;
 {
-  $CatalystX::ComponentsFromConfig::Role::PluginRole::VERSION = '1.003';
+  $CatalystX::ComponentsFromConfig::Role::PluginRole::VERSION = '1.004';
 }
 {
   $CatalystX::ComponentsFromConfig::Role::PluginRole::DIST = 'CatalystX-ComponentsFromConfig';
@@ -77,7 +77,7 @@ CatalystX::ComponentsFromConfig::Role::PluginRole - parameterised role for plugi
 
 =head1 VERSION
 
-version 1.003
+version 1.004
 
 =head1 DESCRIPTION
 
