@@ -1,4 +1,6 @@
 {{$NEXT}}
+ - allow passing args as list (not only hashref) to the adapted
+   class's constructor (thanks Ilmari)
 
 1.005     2014-07-29 10:55:10+01:00 Europe/London
  - use SingleEncoding (thanks sergeyromanov)
