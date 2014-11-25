@@ -14,11 +14,17 @@ cmp_deeply(TestApp->components,
            {
                'TestApp::Model::Foo' => all(
                    isa('Foo'),
-                   methods(something => 'a string'),
+                   methods(
+                       something => 'a string',
+                       orig_args => [superhashof({something => 'a string'})],
+                   ),
                ),
                'TestApp::View::Bar' => all(
                    isa('Foo'),
-                   methods(something => 'a view'),
+                   methods(
+                       something => 'a view',
+                       orig_args => [something => 'a view'],
+                   ),
                ),
            },
            'the plugin worked');
