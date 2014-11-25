@@ -1,5 +1,3 @@
-{{$NEXT}}
-
 1.006     2014-11-25 14:07:37+00:00 Europe/London
  - allow passing args as list (not only hashref) to the adapted
    class's constructor (thanks Ilmari)
